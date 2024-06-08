@@ -28,7 +28,7 @@ export default {
     return {
       username: '',
       password: '',
-      error: '', // Add error field
+      error: '',
     };
   },
   methods: {
@@ -51,7 +51,17 @@ export default {
     },
     goToRegister() {
       this.$router.push('/register');
-    }
+    },
+    async pingBackend() {
+      try {
+        await apiClient.get('/task/get-all');
+      } catch (error) {
+        console.error('Error pinging backend:', error);
+      }
+    },
+  },
+  created() {
+    this.pingBackend();
   },
 };
 </script>
