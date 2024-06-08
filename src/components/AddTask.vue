@@ -5,11 +5,11 @@
       <form @submit.prevent="addTask">
         <div class="form-group">
           <label for="title">Título:</label>
-          <input type="text" id="title" v-model="title">
+          <input type="text" id="title" v-model="title" required>
         </div>
         <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea id="description" v-model="description" rows="5"></textarea>
+          <label for="description">Descrição:</label>
+          <textarea id="description" v-model="description" rows="5" required></textarea>
         </div>
         <div class="form-group">
           <div><label>Ocorrência:</label></div>
@@ -23,7 +23,7 @@
           <label for="value">Buba Coins:</label>
           <input type="number" id="value" v-model="value">
         </div>
-        <button type="submit">Add Task</button>
+        <button type="submit">Adicionar Tarefa</button>
       </form>
     </div>
   </div>
@@ -37,7 +37,7 @@ export default {
     return {
       title: '',
       description: '',
-      type: '',
+      type: 'Diariamente',
       value: 0,
     };
   },
@@ -50,6 +50,7 @@ export default {
           type: this.type,
           is_completed: false,
           value: this.value,
+          created: Date.now(),
         };
         await apiClient.post('/task/create', newTask);
         this.$router.push('/');

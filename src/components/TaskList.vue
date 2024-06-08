@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Tasks</h1>
+        <h1>Tarefas</h1>
         <ul>
             <li v-for="task in tasks" :key="task.id">
                 {{ task.title }} - {{ task.description }} - Completada: {{ task.is_completed }} - Buba Coins: {{ task.value}}
